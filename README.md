@@ -5,7 +5,7 @@ Write your own <a target="_blank" href="https://www.academia.edu/10297206/Secret
 ^In this picture, <a target="_blank" href="https://twitter.com/krisbredemeier">Kris</a>, and<a target="_blank" href="https://twitter.com/cyrjulien">Jul</a>
 # Resources
 Read or watch:
-i'm a collaboratorREADME.md
+
 <ul>
 <li>Secrets of printf</li>
 <li>Group Projects concept page (Don’t forget to read this)</li>
@@ -34,3 +34,5 @@ i'm a collaboratorREADME.md
 
 # GitHub
 # There should be one project repository per group. The other members do not fork or clone the project to ensure only one of the team has the repository in their github account otherwise you risk scoring 0%
+
+Contributor [Fatima Slimani](https://github.com/fatima-slimani)
