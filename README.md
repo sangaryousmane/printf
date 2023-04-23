@@ -2,6 +2,7 @@
 Write your own <a target="_blank" href="https://www.academia.edu/10297206/Secrets_of_printf_">printf</a> function.
 <img src = 'printf_img.jpg' />
 
+^In this picture, <a target="_blank" href="https://twitter.com/krisbredemeier">Kris</a>, and<a target="_blank" href="https://twitter.com/cyrjulien">Jul</a>
 # Resources
 Read or watch:
 
