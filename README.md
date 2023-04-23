@@ -5,7 +5,7 @@ Write your own <a target="_blank" href="https://www.academia.edu/10297206/Secret
 ^In this picture, <a target="_blank" href="https://twitter.com/krisbredemeier">Kris</a>, and<a target="_blank" href="https://twitter.com/cyrjulien">Jul</a>
 # Resources
 Read or watch:
-
+i'm a collaboratorREADME.md
 <ul>
 <li>Secrets of printf</li>
 <li>Group Projects concept page (Don’t forget to read this)</li>
