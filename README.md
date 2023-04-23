@@ -1,5 +1,5 @@
 # Background Context
-Write your own <a href="https://www.academia.edu/10297206/Secrets_of_printf_ ">printf</a> function.
+Write your own <a href="https://www.academia.edu/10297206/Secrets_of_printf_ " target='_blank'>printf</a> function.
 <img src = 'printf_img.jpg' />
 
 # Resources
