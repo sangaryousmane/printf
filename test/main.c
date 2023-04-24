@@ -8,5 +8,5 @@ int main(void)
 	len2 = _printf("age: %c \n", 102);
 	printf("%d = %d", len, len2);
 
-	return 0;
+	return (0);
 }
