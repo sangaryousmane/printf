@@ -24,8 +24,8 @@ int main(void)
 	len2 = printf("Unknown:[%r]\n");
 	_printf("Length:[%d = %d]\n\n", len, len2);
 
-	len = _printf("%s%%\n", "hola");
-	len2 = printf("%s%%\n", "hola");
+	len = _printf("%2ss%%\n", "hola");
+	len2 = printf("%2ss%%\n", "hola");
 	_printf("Length:[%d = %d]\n\n", len, len2);
 
 	return (0);

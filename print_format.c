@@ -49,24 +49,29 @@ int print_formatted(const char *current, va_list ap, int *token_length)
 
 	/* (+|-)*(0-9)* */
 
+	*token_length = 0;
 	if (is_digit(*current) || is_sign(*current))
 	{
 		parse_signed_number(current, &length);
+		*token_length = length;
 	}
-	*token_length = length + 1;
 
-	switch (*current)
+	switch (current[*token_length])
 	{
 	case 'c':
-
+		*token_length += 1;
 		return (print_char(ap));
 	case 's':
+		*token_length += 1;
 		return (print_string(ap));
 	case 'd':
+		*token_length += 1;
 		return (print_int(ap));
 	case 'i':
+		*token_length += 1;
 		return (print_int(ap));
 	case '%':
+		*token_length += 1;
 		return (print_unknown('%'));
 
 	default:
