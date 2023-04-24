@@ -15,7 +15,7 @@ int parse_signed_number(const char *str, int *length)
 	*length = 0;
 
 	/* (+|-)* */
-	while (is_sign(str[*length]))
+	while (is_sign(str[*length]) || str[*length] == ' ')
 	{
 		if (str[*length] == '-')
 		{
@@ -50,7 +50,7 @@ int print_formatted(const char *current, va_list ap, int *token_length)
 	/* (+|-)*(0-9)* */
 
 	*token_length = 0;
-	if (is_digit(*current) || is_sign(*current))
+	if (is_digit(*current) || is_sign(*current) || *current == ' ')
 	{
 		parse_signed_number(current, &length);
 		*token_length = length;
