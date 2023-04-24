@@ -9,7 +9,7 @@
  */
 int _putchar(int c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 /**
@@ -19,8 +19,22 @@ int _putchar(int c)
  */
 int print_char(va_list ap)
 {
-    _putchar(va_arg(ap, int));
-    return (1);
+	_putchar(va_arg(ap, int));
+	return (1);
+}
+
+/**
+ * print_unknown - handle the printing of unkown
+ * char with percent
+ *
+ * @c: The character to print
+ * Return: 1
+ */
+int print_unknown(char c)
+{
+	_putchar('%');
+	_putchar(c);
+	return (2);
 }
 
 /**
@@ -31,13 +45,13 @@ int print_char(va_list ap)
  */
 int print_string(va_list ap)
 {
-    int i = 0;
-    char *str = va_arg(ap, char *);
+	int i = 0;
+	char *str = va_arg(ap, char *);
 
-    while (str[i])
-    {
-        _putchar(str[i]);
-        i++;
-    }
-    return (i);
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }

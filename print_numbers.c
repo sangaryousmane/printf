@@ -7,14 +7,14 @@
  */
 int int_length(int num)
 {
-    int length = 0;
+	int length = 0;
 
-    while (num != 0)
-    {
-        num /= 10;
-        length++;
-    }
-    return (length);
+	while (num != 0)
+	{
+		num /= 10;
+		length++;
+	}
+	return (length);
 }
 
 /**
@@ -24,32 +24,32 @@ int int_length(int num)
  */
 int print_int(va_list ap)
 {
-    int num = va_arg(ap, int);
-    int length = int_length(num);
-    int k, j;
+	int num = va_arg(ap, int);
+	int length = int_length(num);
+	int k, j;
 
-    /* array allocation */
-    char *array = malloc(length * sizeof(char));
+	/* array allocation */
+	char *array = malloc(length * sizeof(char));
 
-    if (array == NULL)
-    {
-        return (-1);
-    }
+	if (array == NULL)
+	{
+		return (-1);
+	}
 
-    j = length - 1;
+	j = length - 1;
 
-    /* int to array */
-    while (j >= 0)
-    {
-        array[j] = (num % 10) + '0';
-        num /= 10;
-        j--;
-    }
+	/* int to array */
+	while (j >= 0)
+	{
+		array[j] = (num % 10) + '0';
+		num /= 10;
+		j--;
+	}
 
-    /* print array characters */
-    for (k = 0; k < length; k++)
-    {
-        _putchar(array[k]);
-    }
-    return (length);
+	/* print array characters */
+	for (k = 0; k < length; k++)
+	{
+		_putchar(array[k]);
+	}
+	return (length);
 }

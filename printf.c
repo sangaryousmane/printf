@@ -1,6 +1,33 @@
 #include "main.h"
 
 /**
+ * print_value - print a value according to a format
+ *
+ * @c: format
+ * @ap: arguments list
+ *
+ * Return: length of the string
+ */
+int print_value(char c, va_list ap)
+{
+	switch (c)
+	{
+	case 'c':
+		return print_char(ap);
+	case 's':
+		return print_string(ap);
+
+	case 'd':
+		return print_int(ap);
+	case 'i':
+		return print_int(ap);
+
+	default:
+		return print_unknown(c);
+	}
+}
+
+/**
  * _printf - Use the targeted format to produce an output
  * @format: format to print
  * Return: number length
@@ -16,27 +43,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			switch (format[i])
-			{
-			case 'c':
-				length += print_char(ap);
-				break;
-			case 's':
-
-				length += print_string(ap);
-				break;
-			case 'd':
-				length += print_int(ap);
-				break;
-			case 'i':
-				length += print_int(ap);
-				break;
-			default:
-				_putchar('%');
-				_putchar(format[i]);
-				length += 2;
-				break;
-			}
+			length += print_value(format[i], ap);
 		}
 		else
 		{
