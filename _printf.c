@@ -16,7 +16,7 @@ code_format find_format[] = {
 {"d", handle_print_d},
 {NULL, NULL}
 };
-while (find_format[i].ass_func)
+while (find_format[i].specifier)
 {
 if (find_format[i].specifier[0] == (*format))
 {
@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 va_list num_list;
 int (*match)(va_list);
 int i = 0, length = 0;
-if (!format)
+if (format == NULL)
 return (-1);
 va_start(num_list, format);
 while (format[i])
