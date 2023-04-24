@@ -15,7 +15,6 @@ int print_unknown(char c);
 int is_digit(char c);
 int is_sign(char c);
 int print_formatted(const char *str, va_list ap, int *token_length);
-int parse_signed_number(const char *str, int *length);
 int int_length(int num);
 
 int _printf(const char *format, ...);
