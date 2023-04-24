@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * int_length - returns the number of digits of @num
+ * @i: integer will be used to calculate its number of digits
+ * Return: number of digits
+ */
 int int_length(int num)
 {
     int length = 0;
@@ -12,6 +17,11 @@ int int_length(int num)
     return (length);
 }
 
+/**
+ * print_int - handle the printing of integers @i
+ * @i: integer to be printed
+ * Return: size
+ */
 int print_int(va_list ap)
 {
     int num = va_arg(ap, int);

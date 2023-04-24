@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * _printf - Use the targeted format to produce an output
+ * @format: format to print
+ * Return: number length
+ */
 int _printf(const char *format, ...)
 {
 	va_list ap;
