@@ -2,7 +2,7 @@
 
 /**
  * int_length - returns the number of digits of @num
- * @i: integer will be used to calculate its number of digits
+ * @num: integer will be used to calculate its number of digits
  * Return: number of digits
  */
 int int_length(int num)
@@ -19,7 +19,7 @@ int int_length(int num)
 
 /**
  * print_int - handle the printing of integers @i
- * @i: integer to be printed
+ * @ap: pointer to arguments
  * Return: size
  */
 int print_int(va_list ap)

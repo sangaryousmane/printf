@@ -13,17 +13,17 @@ int print_value(char c, va_list ap)
 	switch (c)
 	{
 	case 'c':
-		return print_char(ap);
+		return (print_char(ap));
 	case 's':
-		return print_string(ap);
+		return (print_string(ap));
 
 	case 'd':
-		return print_int(ap);
+		return (print_int(ap));
 	case 'i':
-		return print_int(ap);
+		return (print_int(ap));
 
 	default:
-		return print_unknown(c);
+		return (print_unknown(c));
 	}
 }
 
