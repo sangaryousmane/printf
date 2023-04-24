@@ -11,7 +11,7 @@
 int (*match_func(const char *format))(va_list)
 {
 unsigned int i = 0;
-code_format find_format[] = {
+format_of_code find_format[] = {
 {"i", handle_print_i},
 {"d", handle_print_d},
 {NULL, NULL}
