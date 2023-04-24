@@ -16,7 +16,7 @@ if (n != 0)
 {
 if (n < 0)
 {
-putchar('-');
+_putchar('-');
 counter++;
 n *= -1;
 }
@@ -38,7 +38,7 @@ j = 1;
 while (j <= length)
 {
 digit = n / power;
-putchar(digit + '0');
+_putchar(digit + '0');
 counter++;
 n -= digit * power;
 power /= 10;
@@ -47,7 +47,7 @@ j++;
 }
 else
 {
-putchar('0');
+_putchar('0');
 return (1);
 }
 return (counter);

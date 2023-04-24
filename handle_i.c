@@ -6,7 +6,7 @@
 * @i: integer to be printed
 * Return: size
 */
-int handle_printing_i(va_list i)
+int handle_print_i(va_list i)
 {
 int length, power, j, digit, n, counter, number;
 counter = 0;
@@ -15,7 +15,7 @@ if (n != 0)
 {
 if (n < 0)
 {
-putchar('-');
+_putchar('-');
 counter++;
 }
 number = n;
@@ -33,10 +33,10 @@ for (j = 1; j <= length; j++)
 digit = n / power;
 if (n < 0)
 {
-putchar((digit * -1) + 48);
+_putchar((digit * -1) + 48);
 }
 else
-putchar(digit + '0');
+_putchar(digit + '0');
 counter++;
 n -= digit * power;
 power /= 10;
@@ -44,7 +44,7 @@ power /= 10;
 }
 else
 {
-putchar('0');
+_putchar('0');
 return (1);
 }
 return (counter);
