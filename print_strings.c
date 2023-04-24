@@ -32,9 +32,7 @@ int print_char(va_list ap)
  */
 int print_unknown(char c)
 {
-	_putchar('%');
-	_putchar(c);
-	return (2);
+	return (_putchar(c));
 }
 
 /**
