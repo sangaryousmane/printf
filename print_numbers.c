@@ -53,3 +53,25 @@ int print_int(va_list ap)
 	}
 	return (length);
 }
+
+/**
+ * is_digit - checks if character is a digit
+ * @c:  character to be checked
+ *
+ * Return: 1 if digit, 0 otherwise
+ */
+int is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+/**
+ * is_sign - checks if character is a sign
+ * @c:  character to be checked
+ *
+ * Return: 1 if sign, 0 otherwise
+ */
+int is_sign(char c)
+{
+	return (c == '+' || c == '-');
+}
