@@ -35,4 +35,6 @@ Read or watch:
 # GitHub
 # There should be one project repository per group. The other members do not fork or clone the project to ensure only one of the team has the repository in their github account otherwise you risk scoring 0%
 
-Contributor [Fatima Slimani](https://github.com/fatima-slimani)
+Contributors
+1. [Fatima Slimani](https://github.com/fatima-slimani)
+2. [Ousmane Sangary](https://github.com/sangaryousmane)
