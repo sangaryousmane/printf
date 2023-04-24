@@ -1,33 +1,6 @@
 #include "main.h"
 
 /**
- * print_value - print a value according to a format
- *
- * @c: format
- * @ap: arguments list
- *
- * Return: length of the string
- */
-int print_value(char c, va_list ap)
-{
-	switch (c)
-	{
-	case 'c':
-		return (print_char(ap));
-	case 's':
-		return (print_string(ap));
-
-	case 'd':
-		return (print_int(ap));
-	case 'i':
-		return (print_int(ap));
-
-	default:
-		return (print_unknown(c));
-	}
-}
-
-/**
  * _printf - Use the targeted format to produce an output
  * @format: format to print
  * Return: number length
@@ -35,15 +8,18 @@ int print_value(char c, va_list ap)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i = 0, length = 0;
+	int length = 0;
+	int i = 0, token_length;
 
 	va_start(ap, format);
+
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			i++;
-			length += print_value(format[i], ap);
+			token_length = 0;
+			length += print_formatted(format + i + 1, ap, &token_length);
+			i += token_length;
 		}
 		else
 		{
