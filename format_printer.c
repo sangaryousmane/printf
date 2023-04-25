@@ -22,12 +22,15 @@ code_format f_types[] = {
 };
 for (i = 0; f_types[i].specifier != '\0'; i++)
 if (format[*ind] == f_types[i].specifier)
+{
 return (f_types[i].ass_func(l, b, f, w, p, s));
-
+}
 if (f_types[i].specifier == '\0')
 {
 if (format[*ind] == '\0')
+{
 return (-1);
+}
 u_len += write(1, "%%", 1);
 if (format[*ind - 1] == ' ')
 {
