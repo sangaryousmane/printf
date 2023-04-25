@@ -1,54 +1,140 @@
 #include "main.h"
+
 /**
- * formatter - Prints an argument based on its type
- * @format: Formatted string in which to print the arguments.
- * @l: List of arguments to be printed.
- * @ind: ind.
- * @b: Buffer array to handle print.
- * @f: Calculates active f
- * @w: get w.
- * @p: Precision specification
- * @s: Size specifier
- * Return: 1 or 2;
+ * get_flags - Calculates active flags
+ * @format: Formatted string in which to print the arguments
+ * @i: take a parameter.
+ * Return: Flags:
  */
-int formatter(const char *format, int *ind,
-va_list l, char b[], int f, int w, int p, int s)
+int get_flags(const char *format, int *i)
 {
-int i, u_len = 0, printables = -1;
-code_format f_types[] = {
-{'i', print_int},
-{'d', print_int},
-{'\0', NULL}
-};
-for (i = 0; f_types[i].specifier != '\0'; i++)
-if (format[*ind] == f_types[i].specifier)
-{
-return (f_types[i].ass_func(l, b, f, w, p, s));
+	/* - + 0 # ' ' */
+	/* 1 2 4 8  16 */
+	int j, curr_i;
+	int flags = 0;
+	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+
+	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	{
+		for (j = 0; FLAGS_CH[j] != '\0'; j++)
+			if (format[curr_i] == FLAGS_CH[j])
+			{
+				flags |= FLAGS_ARR[j];
+				break;
+			}
+
+		if (FLAGS_CH[j] == 0)
+			break;
+	}
+
+	*i = curr_i - 1;
+
+	return (flags);
 }
-if (f_types[i].specifier == '\0')
+
+#include "main.h"
+
+/**
+ * get_precision - Calculates the precision for printing
+ * @format: Formatted string in which to print the arguments
+ * @i: List of arguments to be printed.
+ * @list: list of arguments.
+ *
+ * Return: Precision.
+ */
+int get_precision(const char *format, int *i, va_list list)
 {
-if (format[*ind] == '\0')
+	int curr_i = *i + 1;
+	int precision = -1;
+
+	if (format[curr_i] != '.')
+		return (precision);
+
+	precision = 0;
+
+	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	{
+		if (is_digit(format[curr_i]))
+		{
+			precision *= 10;
+			precision += format[curr_i] - '0';
+		}
+		else if (format[curr_i] == '*')
+		{
+			curr_i++;
+			precision = va_arg(list, int);
+			break;
+		}
+		else
+			break;
+	}
+
+	*i = curr_i - 1;
+
+	return (precision);
+}
+
+#include "main.h"
+
+/**
+ * get_size - Calculates the size to cast the argument
+ * @format: Formatted string in which to print the arguments
+ * @i: List of arguments to be printed.
+ *
+ * Return: Precision.
+ */
+int get_size(const char *format, int *i)
 {
-return (-1);
+	int curr_i = *i + 1;
+	int size = 0;
+
+	if (format[curr_i] == 'l')
+		size = S_LONG;
+	else if (format[curr_i] == 'h')
+		size = S_SHORT;
+
+	if (size == 0)
+		*i = curr_i - 1;
+	else
+		*i = curr_i;
+
+	return (size);
 }
-u_len += write(1, "%%", 1);
-if (format[*ind - 1] == ' ')
+
+#include "main.h"
+
+/**
+ * get_width - Calculates the width for printing
+ * @format: Formatted string in which to print the arguments.
+ * @i: List of arguments to be printed.
+ * @list: list of arguments.
+ *
+ * Return: width.
+ */
+int get_width(const char *format, int *i, va_list list)
 {
-u_len += write(1, " ", 1);
-}
-else if (w)
-{
---(*ind);
-while (format[*ind] != ' ' && format[*ind] != '%')
-{
---(*ind);
-}
-if (format[*ind] == ' ')
---(*ind);
-return (1);
-}
-u_len += write(1, &format[*ind], 1);
-return (u_len);
-}
-return (printables);
+	int curr_i;
+	int width = 0;
+
+	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	{
+		if (is_digit(format[curr_i]))
+		{
+			width *= 10;
+			width += format[curr_i] - '0';
+		}
+		else if (format[curr_i] == '*')
+		{
+			curr_i++;
+			width = va_arg(list, int);
+			break;
+		}
+		else
+			break;
+	}
+
+	*i = curr_i - 1;
+
+	return (width);
 }

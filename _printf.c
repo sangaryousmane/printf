@@ -1,11 +1,25 @@
 #include "main.h"
-void print_buffer(char b[], int *index);
-/**
- * _printf - Receive string and variable number of args
- * @format: Mandatory string at invocation
- * Return: counts of printed strings
- */
 
+/**
+* is_digit - checks if character is a digit
+* @c:  character to be checked
+*
+* Return: 1 if digit, 0 otherwise
+*/
+int is_digit(char c)
+{
+return (c >= '0' && c <= '9');
+}
+
+
+
+void print_buffer(char buffer[], int *buff_ind);
+
+/**
+ * _printf - Printf function
+ * @format: format.
+ * Return: Printed chars.
+ */
 int _printf(const char *format, ...)
 {
 int i, printed = 0, printed_chars = 0;
@@ -14,11 +28,8 @@ va_list list;
 char buffer[BUFF_SIZE];
 
 if (format == NULL)
-{
 return (-1);
-}
 va_start(list, format);
-
 for (i = 0; format && format[i] != '\0'; i++)
 {
 if (format[i] != '%')
@@ -38,9 +49,12 @@ width = get_width(format, &i, list);
 precision = get_precision(format, &i, list);
 size = get_size(format, &i);
 ++i;
-printed = formatter(format, &i, list, buffer, flags, width, precision, size);
+printed = handle_print(format, &i, list, buffer,
+flags, width, precision, size);
 if (printed == -1)
+{
 return (-1);
+}
 printed_chars += printed;
 }
 }
@@ -48,7 +62,6 @@ print_buffer(buffer, &buff_ind);
 va_end(list);
 return (printed_chars);
 }
-
 
 /**
  * print_buffer - Prints the contents of the buffer if it exist
@@ -58,8 +71,7 @@ return (printed_chars);
 void print_buffer(char buffer[], int *buff_ind)
 {
 if (*buff_ind > 0)
-{
 write(1, &buffer[0], *buff_ind);
-}
 *buff_ind = 0;
 }
+
