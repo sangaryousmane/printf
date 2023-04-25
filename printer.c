@@ -2,7 +2,7 @@
 
 /**
  * get_fmt - gets the format function based on the type
- * @char: formatter type
+ * @s: formatter type
  * Return: the formatter function;
  */
 formatter *get_fmt(char s)
@@ -21,7 +21,7 @@ formatter *get_fmt(char s)
 	case 'b':
 		return (print_binary);
 	case 'u':
-		return (print_unsigned);
+		return (print_unsigned_number);
 	case 'o':
 		return (print_octal);
 	case 'x':
@@ -61,24 +61,23 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 
 	if (print != NULL)
 		return ((*print)(list, buffer, flags, width, precision, size));
-	else
+
+	if (fmt[*ind] == '\0')
+		return (-1);
+	unknow_len += write(1, "%%", 1);
+	if (fmt[*ind - 1] == ' ')
+		unknow_len += write(1, " ", 1);
+	else if (width)
 	{
-		if (fmt[*ind] == '\0')
-			return (-1);
-		unknow_len += write(1, "%%", 1);
-		if (fmt[*ind - 1] == ' ')
-			unknow_len += write(1, " ", 1);
-		else if (width)
-		{
+		--(*ind);
+		while (fmt[*ind] != ' ' && fmt[*ind] != '%')
 			--(*ind);
-			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
-				--(*ind);
-			if (fmt[*ind] == ' ')
-				--(*ind);
-			return (1);
-		}
-		unknow_len += write(1, &fmt[*ind], 1);
-		return (unknow_len);
+		if (fmt[*ind] == ' ')
+			--(*ind);
+		return (1);
 	}
+	unknow_len += write(1, &fmt[*ind], 1);
+	return (unknow_len);
+
 	return (printed_chars);
 }

@@ -6,13 +6,11 @@
 
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
-
 #define F_MINUS 1
 #define F_PLUS 2
 #define F_ZERO 4
 #define F_HASH 8
 #define F_SPACE 16
-
 #define S_LONG 2
 #define S_SHORT 1
 
@@ -52,8 +50,8 @@ int print_int(va_list types, char buffer[],
 			  int flags, int width, int precision, int size);
 int print_binary(va_list types, char buffer[],
 				 int flags, int width, int precision, int size);
-int print_unsigned(va_list types, char buffer[],
-				   int flags, int width, int precision, int size);
+int print_unsigned_number(va_list types, char buffer[],
+						  int flags, int width, int precision, int size);
 int print_octal(va_list types, char buffer[],
 				int flags, int width, int precision, int size);
 int print_hexadecimal(va_list types, char buffer[],
@@ -96,5 +94,4 @@ int is_digit(char);
 
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
-
 #endif /* MAIN_H */
