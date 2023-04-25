@@ -31,17 +31,6 @@ int _putstring(char *str)
 }
 
 /**
- * print_char - handle the printing of char from arguments
- * @ap: pointer to arguments
- * Return: 1
- */
-int print_char(va_list ap)
-{
-	_putchar(va_arg(ap, int));
-	return (1);
-}
-
-/**
  * print_unknown - handle the printing of unkown
  * char with percent
  *
@@ -53,19 +42,3 @@ int print_unknown(char c)
 	return (_putchar(c));
 }
 
-/**
- * print_string - handle the printing of string from arguments
- * @ap:  pointer to arguments
- *
- * Return: length of string
- */
-int print_string(va_list ap)
-{
-	char *str = va_arg(ap, char *);
-
-	if (str == NULL)
-	{
-		str = "(null)";
-	}
-	return _putstring(str);
-}
