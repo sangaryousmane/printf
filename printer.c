@@ -1,4 +1,46 @@
 #include "main.h"
+
+/**
+ * get_fmt - gets the format function based on the type
+ * @char: formatter type
+ * Return: the formatter function;
+ */
+formatter *get_fmt(char s)
+{
+	switch (s)
+	{
+	case 'c':
+		return (print_char);
+	case 's':
+		return (print_string);
+	case '%':
+		return (print_percent);
+	case 'i':
+	case 'd':
+		return (print_int);
+	case 'b':
+		return (print_binary);
+	case 'u':
+		return (print_unsigned);
+	case 'o':
+		return (print_octal);
+	case 'x':
+		return (print_hexadecimal);
+	case 'X':
+		return (print_hexa_upper);
+	case 'p':
+		return (print_pointer);
+	case 'S':
+		return (print_non_printable);
+	case 'r':
+		return (print_reverse);
+	case 'R':
+		return (print_rot13string);
+	default:
+		return (NULL);
+	}
+}
+
 /**
  * handle_print - Prints an argument based on its type
  * @fmt: Formatted string in which to print the arguments.
@@ -14,29 +56,12 @@
 int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 				 int flags, int width, int precision, int size)
 {
-	int i, unknow_len = 0, printed_chars = -1;
-	fmt_t fmt_types[] = {
-		{'c', print_char},
-		{'s', print_string},
-		{'%', print_percent},
-		{'i', print_int},
-		{'d', print_int},
-		{'b', print_binary},
-		{'u', print_unsigned},
-		{'o', print_octal},
-		{'x', print_hexadecimal},
-		{'X', print_hexa_upper},
-		{'p', print_pointer},
-		{'S', print_non_printable},
-		{'r', print_reverse},
-		{'R', print_rot13string},
-		{'\0', NULL}};
+	int unknow_len = 0, printed_chars = -1;
+	formatter *print = get_fmt(fmt[*ind]);
 
-	for (i = 0; fmt_types[i].fmt != '\0'; i++)
-		if (fmt[*ind] == fmt_types[i].fmt)
-			return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
-
-	if (fmt_types[i].fmt == '\0')
+	if (print != NULL)
+		return ((*print)(list, buffer, flags, width, precision, size));
+	else
 	{
 		if (fmt[*ind] == '\0')
 			return (-1);
