@@ -13,8 +13,8 @@
  * Return: Number of written chars.
  */
 int write_unsgnd(int is_negative, int ind,
-	char buffer[],
-	int flags, int width, int precision, int size)
+				 char buffer[],
+				 int flags, int width, int precision, int size)
 {
 	int length = BUFF_SIZE - ind - 1, i = 0;
 	char padd = ' ';

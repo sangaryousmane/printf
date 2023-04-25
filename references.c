@@ -37,8 +37,6 @@ int append_hexa_code(char ascii_code, char buffer[], int i)
 	return (3);
 }
 
-
-
 /**
  * convert_size_number - Casts a number to the specified size
  * @num: Number to be casted.
@@ -72,5 +70,3 @@ long int convert_size_unsgnd(unsigned long int num, int size)
 
 	return ((unsigned int)num);
 }
-
-
