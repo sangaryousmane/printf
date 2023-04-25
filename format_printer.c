@@ -1,51 +1,51 @@
 #include "main.h"
-
 /**
- * format_receiver - print formatted args
- * @format: mandatory chars
- * @args: List of all args
- * @lst: all args list
- * Return: total of printed values
+ * formatter - Prints an argument based on its type
+ * @format: Formatted string in which to print the arguments.
+ * @l: List of arguments to be printed.
+ * @ind: ind.
+ * @b: Buffer array to handle print.
+ * @f: Calculates active f
+ * @w: get w.
+ * @p: Precision specification
+ * @s: Size specifier
+ * Return: 1 or 2;
  */
+int formatter(const char *format, int *ind,
+va_list l, char b[], int f, int w, int p, int s)
+{
+int i, u_len = 0, printables = -1;
+code_format f_types[] = {
+{'i', print_int},
+{'d', print_int},
+{'\0', NULL}
+};
+for (i = 0; f_types[i].specifier != '\0'; i++)
+if (format[*ind] == f_types[i].specifier)
+return (f_types[i].ass_func(l, b, f, w, p, s));
 
-int format_receiver(const char *format, code_format lst[], va_list args)
+if (f_types[i].specifier == '\0')
 {
-int i, j, r_val, printables;
-printables = 0;
-for (i = 0; format[i] != '\0'; i++)
-{
-if (format[i] == '%')
-{
-for (j = 0; lst[j].specifier != NULL; j++)
-{
-if (format[i + 1] == lst[j].specifier[0])
-{
-r_val = lst[j].ass_func(args);
-if (r_val == -1)
+if (format[*ind] == '\0')
 return (-1);
-printables += r_val;
-break;
-}
-}
-if (lst[j].specifier == NULL && format[i + 1] != ' ')
+u_len += write(1, "%%", 1);
+if (format[*ind - 1] == ' ')
 {
-if (format[i + 1] != '\0')
+u_len += write(1, " ", 1);
+}
+else if (w)
 {
-_putchar(format[i]);
-_putchar(format[i + 1]);
-printables = printables + 2;
-}
-else
-return (-1);
-}
-i = i + 1;
-}
-else
+--(*ind);
+while (format[*ind] != ' ' && format[*ind] != '%')
 {
-_putchar(format[i]);
-printables++;
+--(*ind);
 }
+if (format[*ind] == ' ')
+--(*ind);
+return (1);
+}
+u_len += write(1, &format[*ind], 1);
+return (u_len);
 }
 return (printables);
 }
-
