@@ -6,17 +6,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/**
+* struct format_of_code - structure format
+* @specifier: format specifier
+* @associated_function: function associated with variable list
+*/
+
+typedef struct format_of_code
+{
+char *specifier;
+int (*ass_func)(va_list);
+} code_format;
+
+
 /* internal*/
 int _putchar(int c);
-int print_char(va_list c);
-int print_string(va_list s);
-int print_int(va_list i);
-int print_unknown(char c);
+int format_receiver(const char *format, code_format format_list[], va_list argument_list);
+int _printf(const char *format, ...);
 int is_digit(char c);
 int is_sign(char c);
-int print_formatted(const char *str, va_list ap, int *token_length);
 int int_length(int num);
-
-int _printf(const char *format, ...);
-
+int print_int(va_list i);
 #endif

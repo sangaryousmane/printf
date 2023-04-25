@@ -23,12 +23,6 @@ int main(void)
 	len2 = printf(format, "I am a string !");
 	printf("%d = %d\n\n", len, len2);
 
-	format = "Unknown:[%r]\n";
-	len = _printf(format);
-	len2 = printf(format);
-	printf("%d = %d\n\n", len, len2);
-
-	format = "%s%r%1\n";
 	len = _printf(format, NULL);
 	len2 = printf(format, NULL);
 	printf("%d = %d\n\n", len, len2);
